@@ -3577,4 +3577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   captureCamera: {fileID: 382480222974705297}
-  savePath: CapturedImage.png
+  ScreenShotDelay: 1
+  ScreenShotTimer: 0
+  savePath: .png
+  saveDir: C:\Users\copom\Artificial_Hunter_Vision\TestImgSet_NO_LIGHT\

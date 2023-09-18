@@ -6,9 +6,10 @@ public class ScreenShot : MonoBehaviour
     public float ScreenShotDelay;
     public float ScreenShotTimer;
     public string savePath = ".png"; // Specify the save path and file name
+    public string saveDir = "C:\\Users\\copom\\Artificial_Hunter_Vision\\TestImgSet_NO_LIGHT\\";
 
     public void Start(){
-        ScreenShotDelay = 2;
+        ScreenShotDelay = 1;
         ScreenShotTimer = 0;
     }
     private void Update()
@@ -46,7 +47,7 @@ public class ScreenShot : MonoBehaviour
 
         // Save the captured image to a file
         byte[] bytes = screenShot.EncodeToPNG();
-        System.IO.File.WriteAllBytes(Random.Range(0, 10000) + savePath, bytes);
+        System.IO.File.WriteAllBytes(saveDir + Random.Range(0, 10000) + savePath, bytes);
 
         // Clean up resources
         RenderTexture.active = null;
