@@ -596,9 +596,6 @@ GameObject:
   - component: {fileID: 114937736047215868}
   - component: {fileID: 65345930959735878}
   - component: {fileID: 5820012306424387886}
-  - component: {fileID: 5712624269609438939}
-  - component: {fileID: 5767481171805996936}
-  - component: {fileID: 4725417187860315718}
   - component: {fileID: 6474351450651730614}
   m_Layer: 0
   m_Name: Agent
@@ -690,6 +687,7 @@ MonoBehaviour:
   area: {fileID: 1464170487903594}
   areaSwitch: {fileID: 1432086782037750}
   useVectorObs: 1
+  renderTexture: {fileID: 0}
 --- !u!65 &65345930959735878
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -717,105 +715,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
---- !u!114 &5712624269609438939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131043459059966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: RayPerceptionSensor
-  m_DetectableTags:
-  - block
-  - wall
-  - goal
-  - switchOff
-  - switchOn
-  - stone
-  m_RaysPerDirection: 3
-  m_MaxRayDegrees: 70
-  m_SphereCastRadius: 0.5
-  m_RayLength: 35
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967291
-  m_ObservationStacks: 1
-  m_AlternatingRayOrder: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 0
---- !u!114 &5767481171805996936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131043459059966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: RayPerceptionSensor1
-  m_DetectableTags:
-  - block
-  - wall
-  - goal
-  - switchOff
-  - switchOn
-  - stone
-  m_RaysPerDirection: 3
-  m_MaxRayDegrees: 65
-  m_SphereCastRadius: 0.5
-  m_RayLength: 35
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967291
-  m_ObservationStacks: 1
-  m_AlternatingRayOrder: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 5
---- !u!114 &4725417187860315718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131043459059966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: RayPerceptionSensor2
-  m_DetectableTags:
-  - block
-  - wall
-  - goal
-  - switchOff
-  - switchOn
-  - stone
-  m_RaysPerDirection: 3
-  m_MaxRayDegrees: 75
-  m_SphereCastRadius: 0.5
-  m_RayLength: 35
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967291
-  m_ObservationStacks: 1
-  m_AlternatingRayOrder: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 10
 --- !u!114 &6474351450651730614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1298,7 +1197,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5c59bd36def9a4684be49a21cf201a2d, type: 2}
+  - {fileID: 2100000, guid: 88b9ae7af2c1748a0a1f63407587a601, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3490,7 +3389,6 @@ GameObject:
   - component: {fileID: 8172223308011534704}
   - component: {fileID: 382480222974705297}
   - component: {fileID: 4458274102272617502}
-  - component: {fileID: 4442540505462771989}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -3564,20 +3462,3 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7746652060396615266}
   m_Enabled: 1
---- !u!114 &4442540505462771989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7746652060396615266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aec4edb0bd9d6634c885bca573a42696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  captureCamera: {fileID: 382480222974705297}
-  ScreenShotDelay: 1
-  ScreenShotTimer: 0
-  savePath: .png
-  saveDir: C:\Users\copom\Artificial_Hunter_Vision\TestImgSet_NO_LIGHT\

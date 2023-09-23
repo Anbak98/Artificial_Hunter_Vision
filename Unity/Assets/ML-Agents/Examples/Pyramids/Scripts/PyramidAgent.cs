@@ -22,14 +22,37 @@ public class PyramidAgent : Agent
         m_SwitchLogic = areaSwitch.GetComponent<PyramidSwitch>();
     }
 
+/*-----------------------------------------------------------------------------------------------------*/
+    [SerializeField] 
+    private RenderTexture renderTexture;
+    public Camera captureCamera; // Assign your camera in the Unity Inspector
     public override void CollectObservations(VectorSensor sensor)
     {
-        if (useVectorObs)
+        
+        // Create a RenderTexture to capture the camera's output
+        RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        captureCamera.targetTexture = renderTexture;
+
+        // Render the camera's view into the RenderTexture
+        captureCamera.Render();
+        // You can convert the Render Texture data to an array and feed it to the ML-Agents
+        // Assuming you want to collect color observations (3 channels: R, G, B)
+        RenderTexture.active = renderTexture;
+        var tex2D = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
+        tex2D.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+        tex2D.Apply();
+        RenderTexture.active = null;
+
+        // Convert the Texture2D data to a 1D array
+        var colorData = tex2D.GetPixels32();
+
+        // Flatten the 2D color data into a 1D array and add it as an observation
+        foreach (var pixel in colorData)
         {
-            sensor.AddObservation(m_SwitchLogic.GetState());
-            sensor.AddObservation(transform.InverseTransformDirection(m_AgentRb.velocity));
+            sensor.AddObservation(new Vector3(pixel.r, pixel.g, pixel.b) / 255f);
         }
     }
+/*-----------------------------------------------------------------------------------------------------*/
 
     public void MoveAgent(ActionSegment<int> act)
     {
