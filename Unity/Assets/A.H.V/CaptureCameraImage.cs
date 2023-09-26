@@ -23,9 +23,10 @@ public class CaptureCameraImage : MonoBehaviour
             Counter = 0;
         }
     }
-
-    private void CaptureAndSaveImage()
+    public RenderTexture renderTexture;
+    public void CaptureAndSaveImage()
     {
+        /*
         // Ensure the captureCamera is not null
         if (captureCamera == null)
         {
@@ -34,33 +35,34 @@ public class CaptureCameraImage : MonoBehaviour
         }
 
         // Create a RenderTexture to capture the camera's output
-        RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
         captureCamera.targetTexture = renderTexture;
 
         // Render the camera's view into the RenderTexture
         captureCamera.Render();
-
+        */
 
         // Create a Texture2D and read the pixels from the RenderTexture
-        Texture2D screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        renderTexture = captureCamera.targetTexture;
+        Texture2D screenShot = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
         RenderTexture.active = renderTexture;
-        screenShot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        screenShot.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
         screenShot.Apply();
 
         //
         m_imgbyte = screenShot.EncodeToPNG();
 
 
-        /*
-        System.IO.File.WriteAllBytes(savePath + Random.Range(0, 10000) + ".png", m_bytes);
+        
+        System.IO.File.WriteAllBytes(savePath + Random.Range(0, 50000) + ".png", m_imgbyte);
 
-        // Clean up resources
+        /* Clean up resources
         RenderTexture.active = null;
         captureCamera.targetTexture = null;
-        Destroy(renderTexture);
+        //Destroy(renderTexture);*/
 
         Debug.Log("Image captured and saved to " + savePath);
-        */
+        
     }
     public string serverUrl = "http://localhost:8000/upload"; // 서버 URL을 적절히 변경하세요.
 
