@@ -100,7 +100,6 @@ public class PyramidAgent : Agent
         {
             SetReward(2f);
             EndEpisode();
-            GetComponent<CaptureCameraImage>().CaptureAndSaveImage();
         }
     }
 }

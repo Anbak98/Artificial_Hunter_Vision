@@ -599,6 +599,7 @@ GameObject:
   - component: {fileID: 6474351450651730614}
   - component: {fileID: 4754581036209429221}
   - component: {fileID: 6322879298525461543}
+  - component: {fileID: 3423237611529054626}
   m_Layer: 0
   m_Name: Agent
   m_TagString: agent
@@ -765,6 +766,20 @@ MonoBehaviour:
   Counter: 0
   renderTexture: {fileID: 0}
   serverUrl: http://localhost:8000/upload
+--- !u!114 &3423237611529054626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131043459059966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d73d075d8e2b34e9ed5cf6871efd3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderTexture: {fileID: 0}
+  CNN_INPUT_Camera: {fileID: 382480222974705297}
 --- !u!1 &1148882946833254
 GameObject:
   m_ObjectHideFlags: 0
