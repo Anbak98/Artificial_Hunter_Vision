@@ -24,21 +24,55 @@ public class PyramidAgent : Agent
     /*=========================================================================*/
     /*=========================================================================*/
     public Camera m_imgOriginal;
+    public Camera m_imgWallCam;
+    public Camera m_imgFloorCam;
+    public Camera m_imgButtonCam;
+    public Camera m_imgStoneBoxCam;
+    public RenderTexture m_imgWall;
+    public RenderTexture m_imgFloor;
+    public RenderTexture m_imgButton;
+    public RenderTexture m_imgStoneBox;
+    public Material m_materialWall;
+    public Material m_materialFloor;
+    public Material m_materialButton;
+    public Material m_materialStoneBox;
     public RenderTexture m_imgProcessed;
-    void Start(){
-        if(GameManager.instance.m_On_Upload == true){
-            GameManager.instance.StartImageUploader(m_imgOriginal.targetTexture);
-        }
-    }
+    public RenderTexture m_imgPassed;
+
+    public bool m_agentCaptureTrue = false;
+    // void Start(){
+    //     if(GameManager.instance.m_On_Upload == true){
+    //         GameManager.instance.StartImageUploader(m_imgOriginal.targetTexture);
+    //     }
+    // }
     void Update(){
-        if(GameManager.instance.m_On_Capture == true){
+        if(GameManager.instance.m_On_Capture == true && m_agentCaptureTrue == true){
             if(GameManager.instance.m_captureCounter > GameManager.instance.m_captureDelay){
-                GameManager.instance.CaptureAndSaveImage(m_imgOriginal);
+                int fileNum = Random.Range(0, 5000);
+                GameManager.instance.Shading_Texture(m_imgWallCam.targetTexture, m_imgWall, m_materialWall);
+                GameManager.instance.Shading_Texture(m_imgFloorCam.targetTexture, m_imgFloor, m_materialFloor);
+                GameManager.instance.Shading_Texture(m_imgButtonCam.targetTexture, m_imgButton, m_materialButton);
+                GameManager.instance.Shading_Texture(m_imgStoneBoxCam.targetTexture, m_imgStoneBox, m_materialStoneBox);
+                GameManager.instance.CaptureAndSaveImage(m_imgOriginal.targetTexture, fileNum, "Img\\Original\\");
+                GameManager.instance.CaptureAndSaveImage(m_imgWall, fileNum, "Img\\Wall\\");
+                GameManager.instance.CaptureAndSaveImage(m_imgFloor, fileNum, "Img\\Floor\\");
+                GameManager.instance.CaptureAndSaveImage(m_imgButton, fileNum, "Img\\Button\\");
+                GameManager.instance.CaptureAndSaveImage(m_imgStoneBox, fileNum, "Img\\StoneBox\\");
+               
             }
         }
-        if(GameManager.instance.m_On_Upload == false){
-            GameManager.instance.Passing_Texture(m_imgOriginal.targetTexture, m_imgProcessed);
+        if(GameManager.instance.m_On_Upload == true){
+            if(GameManager.instance.m_captureCounter > GameManager.instance.m_captureDelay){
+                GameManager.instance.StartImageUploader(m_imgOriginal.targetTexture, m_imgProcessed);
+                GameManager.instance.Passing_Texture(m_imgOriginal.targetTexture, m_imgPassed);     
+
+            }
+            // GameManager.instance.Passing_Texture(m_imgOriginal.targetTexture, m_imgProcessed);             
         }
+        else{
+            GameManager.instance.Passing_Texture(m_imgOriginal.targetTexture, m_imgProcessed);     
+        }
+        
     }
     /*=========================================================================*/
     /*=========================================================================*/
@@ -54,7 +88,7 @@ public class PyramidAgent : Agent
                 dirToGo = transform.forward * 1f;
                 break;
             case 2:
-                dirToGo = transform.forward * -1f;
+                // dirToGo = transform.forward * -1f;
                 break;
             case 3:
                 rotateDir = transform.up * 1f;
@@ -89,10 +123,10 @@ public class PyramidAgent : Agent
         {
             discreteActionsOut[0] = 4;
         }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            discreteActionsOut[0] = 2;
-        }
+        // else if (Input.GetKey(KeyCode.S))
+        // {
+        //     discreteActionsOut[0] = 2;
+        // }
     }
 
     public override void OnEpisodeBegin()
@@ -118,6 +152,16 @@ public class PyramidAgent : Agent
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("goal"))
+        {
+            SetReward(2f);
+            EndEpisode();
+        }
+        if (collision.gameObject.CompareTag("switchOff"))
+        {
+            SetReward(2f);
+            EndEpisode();
+        }
+        if (collision.gameObject.CompareTag("switchOn"))
         {
             SetReward(2f);
             EndEpisode();

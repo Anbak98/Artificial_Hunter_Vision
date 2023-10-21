@@ -5,11 +5,9 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 public class ImageCapture : MonoBehaviour
 {
-    public string savePath = "Img\\"; // Specify the save path and file name
     public byte[] m_imgbyte;
     
-    public RenderTexture renderTexture;
-    public void CaptureAndSaveImage(Camera captureCamera)
+    public void CaptureAndSaveImage(RenderTexture renderTexture, int fileNum, string filepath)
     {
         /*
         // Ensure the captureCamera is not null
@@ -28,8 +26,7 @@ public class ImageCapture : MonoBehaviour
         */
 
         // Create a Texture2D and read the pixels from the RenderTexture
-        renderTexture = captureCamera.targetTexture;
-        Texture2D screenShot = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
+        Texture2D screenShot = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
         RenderTexture.active = renderTexture;
         screenShot.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
         screenShot.Apply();
@@ -39,14 +36,14 @@ public class ImageCapture : MonoBehaviour
 
 
         
-        System.IO.File.WriteAllBytes(savePath + Random.Range(0, 50000) + ".png", m_imgbyte);
+        System.IO.File.WriteAllBytes(filepath + fileNum + ".png", m_imgbyte);
 
         /* Clean up resources
         RenderTexture.active = null;
         captureCamera.targetTexture = null;
         //Destroy(renderTexture);*/
 
-        Debug.Log("Image captured and saved to " + savePath);
+        Debug.Log("Image captured and saved to " + filepath);
         
     }
 }
