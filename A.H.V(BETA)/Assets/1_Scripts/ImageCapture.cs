@@ -25,7 +25,8 @@ public class ImageCapture : MonoBehaviour
         captureCamera.Render();
         */
 
-        // Create a Texture2D and read the pixels from the RenderTexture
+        // Create a Texture2D and read the pixels from the RenderTexture 
+        // Debug.Log(renderTexture.width);
         Texture2D screenShot = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
         RenderTexture.active = renderTexture;
         screenShot.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
@@ -43,7 +44,7 @@ public class ImageCapture : MonoBehaviour
         captureCamera.targetTexture = null;
         //Destroy(renderTexture);*/
 
-        Debug.Log("Image captured and saved to " + filepath);
+        // Debug.Log("Image captured and saved to " + filepath);
         
     }
 }

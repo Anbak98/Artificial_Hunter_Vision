@@ -12,8 +12,8 @@ app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = 'C:\\Users\\copom\\Artificial_Hunter_Vision\\SegmentationModel\\ProcessedImg\\'
 
-mean = torch.tensor([0.3598407208919525, 0.33513492345809937, 0.3155311644077301, 0.7351977825164795]).view(4,1,1)
-std = torch.tensor([0.0983257070183754, 0.07080189138650894, 0.1323937177658081, 0.3765745460987091]).view(4,1,1)
+mean = torch.tensor([0.3230084478855133, 0.3013632297515869, 0.29226961731910706, 0.6981670260429382]).view(4,1,1)
+std = torch.tensor([0.10305266082286835, 0.06567802280187607, 0.13611936569213867, 0.4313824474811554]).view(4,1,1)
 
 # 모델
 model = smp.Unet(
@@ -23,8 +23,8 @@ model = smp.Unet(
     encoder_depth=4,
     decoder_channels = [256,128,64,32],
 )
-# device = "cuda" if torch.cuda.is_available() else "cpu"
-# model = model.to(device)
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model = model.to(device)
 
 # 로드하기
 model_pts = ["10_17.pt", "100_segmentcheckpoint.pt", "200_optimal_segmentcheckpoint.pt",
@@ -33,7 +33,7 @@ model_pts = ["10_17.pt", "100_segmentcheckpoint.pt", "200_optimal_segmentcheckpo
 ptdir = "C:\\Users\\copom\\Artificial_Hunter_Vision\\SegmentationModel\\PT\\"
 
 # 파라미터 로드
-checkpoint = torch.load(os.path.join(ptdir, "500_optimal_segmentcheckpoint.pt"))
+checkpoint = torch.load(os.path.join(ptdir, "500_optimal_segmentcheckpoint.pt")).to(device)
 model.load_state_dict(checkpoint)
 
 def do_predict(image):

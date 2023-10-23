@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour
         m_captureCounter += Time.deltaTime;
     }
 
-    public void Passing_Texture(RenderTexture source, RenderTexture target){
+    public void Passing_Texture(RenderTexture source, RenderTexture target)
+    {
         m_imageProcessor.Render_To_Render_Passing(source, target);
     }
     public void Shading_Texture(RenderTexture source, RenderTexture target, Material material){

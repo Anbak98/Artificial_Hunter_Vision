@@ -48,7 +48,7 @@ public class PyramidAgent : Agent
     void Update(){
         if(GameManager.instance.m_On_Capture == true && m_agentCaptureTrue == true){
             if(GameManager.instance.m_captureCounter > GameManager.instance.m_captureDelay){
-                int fileNum = Random.Range(0, 5000);
+                int fileNum = Random.Range(0, 50000);
                 GameManager.instance.Shading_Texture(m_imgWallCam.targetTexture, m_imgWall, m_materialWall);
                 GameManager.instance.Shading_Texture(m_imgFloorCam.targetTexture, m_imgFloor, m_materialFloor);
                 GameManager.instance.Shading_Texture(m_imgButtonCam.targetTexture, m_imgButton, m_materialButton);
@@ -58,7 +58,7 @@ public class PyramidAgent : Agent
                 GameManager.instance.CaptureAndSaveImage(m_imgFloor, fileNum, "Img\\Floor\\");
                 GameManager.instance.CaptureAndSaveImage(m_imgButton, fileNum, "Img\\Button\\");
                 GameManager.instance.CaptureAndSaveImage(m_imgStoneBox, fileNum, "Img\\StoneBox\\");
-               
+                Debug.Log(fileNum);
             }
         }
         if(GameManager.instance.m_On_Upload == true){
