@@ -4084,8 +4084,8 @@ MonoBehaviour:
   m_imageUploader: {fileID: 1318306893}
   m_imageCapture: {fileID: 1318306894}
   m_imageProcessor: {fileID: 1318306896}
-  m_On_Capture: 1
-  m_On_Upload: 0
+  m_On_Capture: 0
+  m_On_Upload: 1
   m_captureCounter: 0
   m_captureDelay: 0.1
 --- !u!4 &1713830525
@@ -5191,7 +5191,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1106831883006774, guid: bd804431e808a492bb5658bcd296e58e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1131043459059966, guid: bd804431e808a492bb5658bcd296e58e, type: 3}
       propertyPath: m_IsActive
@@ -5199,7 +5199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1415580355607462, guid: bd804431e808a492bb5658bcd296e58e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1432086782037750, guid: bd804431e808a492bb5658bcd296e58e, type: 3}
       propertyPath: m_IsActive
@@ -5215,15 +5215,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1617121788334770, guid: bd804431e808a492bb5658bcd296e58e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1649335671082872, guid: bd804431e808a492bb5658bcd296e58e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1953692164607720, guid: bd804431e808a492bb5658bcd296e58e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4518417139497368, guid: bd804431e808a492bb5658bcd296e58e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5310,7 +5310,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5022602860645237092, guid: fc7ffe5f66d7a964287e2b1b21b06e90,
+        type: 3}
     - target: {fileID: 114399412043818042, guid: bd804431e808a492bb5658bcd296e58e,
         type: 3}
       propertyPath: m_BehaviorType

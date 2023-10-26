@@ -27,13 +27,11 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 model = model.to(device)
 
 # 로드하기
-model_pts = ["10_17.pt", "100_segmentcheckpoint.pt", "200_optimal_segmentcheckpoint.pt",
-	"200_segmentcheckpoint.pt", "500_optimal_segmentcheckpoint.pt", "segmentcheckpoint.pt"
-]
+model_pts = ["_100_optimal_segmentcheckpoint.pt"]
 ptdir = "C:\\Users\\copom\\Artificial_Hunter_Vision\\SegmentationModel\\PT\\"
 
 # 파라미터 로드
-checkpoint = torch.load(os.path.join(ptdir, "500_optimal_segmentcheckpoint.pt")).to(device)
+checkpoint = torch.load(os.path.join(ptdir, "_100_optimal_segmentcheckpoint.pt"), map_location=torch.device(device))
 model.load_state_dict(checkpoint)
 
 def do_predict(image):
@@ -107,3 +105,4 @@ def upload_image():
 if __name__ == '__main__':
     # 개발 서버 실행
     app.run(debug=True, port=5555)
+   
